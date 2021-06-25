@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import RequestButtons from "./RequestButtons"
+import WeatherTable from "./WeatherTable";
+import Loader from "./Loader";
+
 
 function App() {
+  document.title = 'Weather API'
+  const [dataWeather, setDataWeather] = useState({})
+  const [loading, setLoading] = React.useState(false)
+
+  function addWeather(city) {
+    setLoading(true)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=301589d8f3d7927b19c4d4f58693e5e8`)
+      .then(data => data.json())
+      .then(info => {
+        setDataWeather({
+          cityName: info.name,
+          temp: info.main.temp,
+          description: info.weather[0].description,
+          img: info.weather[0].icon
+        })
+        setLoading(false)
+      })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wraper">
+      <RequestButtons buttonHandler={addWeather} />
+      {loading ? <Loader /> : <WeatherTable data={dataWeather} />}
+
     </div>
   );
 }
