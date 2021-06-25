@@ -1,6 +1,6 @@
 # Application for demonstrating weather in different parts of the world
 
-To add a new country to the application, add the country data to the `countries` constant in the `constnts.js` file according to the template:
+To add a new country to the application, add the country data to the `countries` constant in the `constants.js` file according to the template:
 
 `[Name of the country with a capital latter]: {
         id: 1,
