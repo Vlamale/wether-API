@@ -7,6 +7,11 @@ To add a new country to the application, add the country data to the `countries`
         name: [Name of the country],
         background: ['link to a picture' or '']
     }`
+    
+## How to start
+**A few simple steps to start:**
+* Install dependencies from `package.json` by running: `npm install`.
+* Run tasks from the list below and start devevelopment!
 
 ## Available Scripts
 
